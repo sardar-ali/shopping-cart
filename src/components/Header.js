@@ -12,9 +12,11 @@ function Header() {
 
     return (
         <div className='headers'>
-            <div className='header-title' to="/">
-                Shoppint Cart
-            </div>
+            <Link to='/'>
+                <div className='header-title'>
+                    Shoppint Cart
+                </div>
+            </Link>
             <Link to='/cart'>
                 <div className='cart-icon'>
                     <AiOutlineShoppingCart />  <span className='badge'> {totalCartItem ? totalCartItem : 0} </span>

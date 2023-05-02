@@ -16,8 +16,11 @@ body {
 }
 
 .header-title {
-  text-decoration: none;
   color: white;
+}
+
+a {
+  text-decoration: none;
 }
 
 .cart-icon {
