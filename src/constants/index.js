@@ -21,7 +21,7 @@ export const data = [
         name: "Color Shoes",
         image: "https://tse3.mm.bing.net/th?id=OIP.o8kb-1SQsGLLS-odNHi2UwHaE8&pid=Api&P=0",
         price: 1099,
-        quantity: 0
+        quantity: 1
     },
 
     {
@@ -35,30 +35,30 @@ export const data = [
 
     {
         id: 5,
-        name: "Hp Leptop",
+        name: "Hp Laptop",
         image: "https://tse2.mm.bing.net/th?id=OIP.DxzeZjIEEsWrrLlSnEg1twHaEh&pid=Api&P=0",
         price: 1099,
-        quantity: 0
+        quantity: 1
     },
 
     {
         id: 6,
-        name: "Gaming Leptop",
+        name: "Gaming Laptop",
         image: "https://tse2.mm.bing.net/th?id=OIP.kFTSKZ21Fm7qx8yUgfkhnAHaE7&pid=Api&P=0",
         price: 80099,
         quantity: 1
     },
     {
         id: 7,
-        name: "Leptop Dell",
+        name: "Laptop Dell",
         image: "https://tse2.mm.bing.net/th?id=OIP.pIYCqTf1gvULOcW5oV67_AHaE8&pid=Api&P=0",
         price: 33099,
-        quantity: 0
+        quantity: 1
     },
 
     {
         id: 8,
-        name: "Leptop Apple",
+        name: "Laptop Apple",
         image: "https://tse2.mm.bing.net/th?id=OIP.-xAqNTVGGDwr1x_TnNtVQQHaEo&pid=Api&P=0",
         price: 99099,
         quantity: 1

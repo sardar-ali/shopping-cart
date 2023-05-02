@@ -1,19 +1,29 @@
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
-import HomeScreen from './screens/HomeScreen';
-import CartScreen from './screens/CartScreen';
-import Header from './components/Header';
+import ContextProvider from './context-api/contextProvider';
+import Routes from './Routes';
 
 const App = () => {
+
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/cart" element={<CartScreen />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <ContextProvider >
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Routes />
+      </ContextProvider>
+    </>
   );
 
 }

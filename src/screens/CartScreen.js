@@ -1,56 +1,43 @@
-import React, { useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { BsPlus } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlineDelete, AiOutlineShoppingCart } from 'react-icons/ai';
+import ApplicationContext from '../context-api/context';
 
 function CartScreen() {
-  let isEmpty = true;
-  const [cartItems, setCartItems] = useState([]);
 
-  //increament cart item
-  const increament = (itm) => {
-    const isItemExist = cartItems?.find((item) => item.id === itm?.id);
-    if (isItemExist) {
-      const result = cartItems?.map((item) => {
-        if (item?.id === isItemExist?.id) {
-          return {
-            ...item,
-            quantity: isItemExist?.quantity + 1
-          }
-        } else {
-          return item;
-        }
-      })
-      setCartItems(result);
+  const {
+    cartItems,
+    totalCartItem,
+    increament,
+    decreament,
+    removedItemFromCart,
+    totalPrice
+  } = useContext(ApplicationContext)
 
-    }
-  }
-
-  //decreament cart item
-  const decreament = (itm) => {
-    console.log("itm ::", itm)
-  }
-
-  console.log("cartItems ::", cartItems);
+  //calculate shipping fee
+  const shippingTax = useMemo(() => {
+    return (Math.round(totalPrice / 10))
+  })
 
   return (
     <div className='cart-container'>
       <div className='item-container'>
         <h3 className='cart-item-heading'>Cart Items</h3>
-        {isEmpty ?
+        {cartItems?.length ?
           <div className='cart-items-section'>
-            {[1, 2]?.map((data) => {
+            {cartItems?.map((data) => {
               return (
                 <>
                   <div className='items'>
-                    <img className="item-img" src="https://tse1.mm.bing.net/th?id=OIP.CyzlF6VuQz6heNvcoPZYTAHaJB&pid=Api&P=0" alt='cart' />
-                    <div>Paint And Shoes</div>
-                    <div>  2099</div>
-                    <div> 
-                    <span onClick={() => increament(data)}> <BsPlus /></span> 
-                    1 
-                    <span onClick={() => decreament(data)}> <AiOutlineMinus /> </span>
+                    <img className="item-img" src={data?.image} alt='cart' />
+                    <div>{data?.name}</div>
+                    <div>Rs. {data?.price}</div>
+                    <div>
+                      <span onClick={() => increament(data)}> <BsPlus /></span>
+                      {data?.quantity}
+                      <span onClick={() => decreament(data)}> <AiOutlineMinus /> </span>
                     </div>
-                    <div><AiOutlineDelete /></div>
+                    <div className="delete-icon " onClick={() => removedItemFromCart(data)}> <AiOutlineDelete /></div>
                   </div>
                   <hr />
                 </>
@@ -59,26 +46,27 @@ function CartScreen() {
           </div> :
           <div className="empty-cart">
             Cart Is empty <AiOutlineShoppingCart />
-          </div>}
+          </div>
+        }
       </div>
       <div className='summery-section'>
         <h4>Order summery</h4>
         <div className='summery-details'>
           <div className='item-subtotal'>
-            <p>total items (2)</p>
-            <p>225</p>
+            <p>Total items ({totalCartItem}) </p>
+            <p>Rs. {totalPrice}</p>
           </div>
           <div className='item-subtotal'>
-            <p>Shipping Fee</p>
-            <p>50</p>
+            <p>Shipping Fee (10 %)</p>
+            <p> Rs. {shippingTax}</p>
           </div>
           <div className='item-subtotal'>
             <p>Total</p>
-            <p>500</p>
+            <p> Rs. {totalPrice + shippingTax} </p>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

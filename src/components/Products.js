@@ -1,45 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import Product from './Product';
 import { data } from './../constants/index';
+import ApplicationContext from '../context-api/context';
 
 
 function Products() {
-    const [cartItems, setCartItems] = useState([]);
-
-    //add to cart items
-    const addToCart = (itm) => {
-        if (!cartItems?.find((item) => item.id === itm?.id)) {
-            setCartItems((prevState) => [...prevState, itm]);
-
-        }
-    }
-
-    //increament cart item
-    const increament = (itm) => {
-        const isItemExist = cartItems?.find((item) => item.id === itm?.id);
-        if (isItemExist) {
-            const result = cartItems?.map((item) => {
-                if (item?.id === isItemExist?.id) {
-                    return {
-                        ...item,
-                        quantity: isItemExist?.quantity + 1
-                    }
-                } else {
-                    return item;
-                }
-            })
-            setCartItems(result);
-
-        }
-    }
-
-    //decreament cart item
-    const decreament = (itm) => {
-        console.log("itm ::", itm)
-    }
-
-    console.log("cartItems ::", cartItems);
+    const {
+        addToCart
+    } = useContext(ApplicationContext);
 
     return (
         <>
@@ -51,9 +20,6 @@ function Products() {
                                 data={itm}
                                 key={itm?.id}
                                 addToCart={addToCart}
-                                increament={increament}
-                                decreament={decreament}
-
                             />
                         </>
                     )
